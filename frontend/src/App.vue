@@ -1,85 +1,100 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="app-container">
+    <header class="header">
+      <h1 class="app-bar-title">
+        Be A Great Coder
+      </h1>
+    </header>
+    <main class="body">
+      <div class="body-container">
+        <CardContainer class="side-card" title="Jobs" button-text="Choose">
+          <CardContent title="Light" :content-list="sampleContentList"/>
+          <CardContent title="Medium" :content-list="sampleContentList"/>
+          <CardContent title="Heavy" :content-list="sampleContentList"/>
+        </CardContainer>
+        <div class="center">
+          <CardShape class="current-stock" clickable>
+            {{currentStock}}
+          </CardShape>
+          <CardContainer class="center-card" title="Jobs" button-text="Choose">
+            <CardContent title="Light" :content-list="sampleContentList"/>
+            <CardContent title="Heavy" :content-list="sampleContentList"/>
+          </CardContainer>
+        </div>
+        <div class="">
+          <CardContainer class="side-card" title="Jobs" button-text="Choose">
+            <CardContent title="Light" :content-list="sampleContentList"/>
+            <CardContent title="Medium" :content-list="sampleContentList"/>
+            <CardContent title="Heavy" :content-list="sampleContentList"/>
+          </CardContainer>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
 
+<script setup lang="ts">
+import { ref, Ref } from 'vue'
+import CardShape from './components/CardShape.vue'
+import CardContainer from './components/CardContainer.vue';
+import CardContent from './components/CardContent.vue';
+
+const sampleContentList = ref([
+  { key: "Diff.", value: "300" },
+  { key: "Rev.", value: "$99,999" },
+  { key: "Cost", value: "$30k + 1.5k/m" },
+])
+
+const currentStock = ref(999999999)
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.app-container {
+  background-color: #fff;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.header {
+  background-color: #004b70;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.body {
+  flex: 1;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.app-bar-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
 }
 
-nav a:first-of-type {
-  border: 0;
+.current-stock {
+  background-color: #004b70;
+  font-size: 3rem;
+  padding: 0.5rem 1.5rem;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.body-container {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.center {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 </style>
