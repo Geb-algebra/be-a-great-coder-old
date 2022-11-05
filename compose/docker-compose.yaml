@@ -6,6 +6,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: "beagreatcoder"
+    volumes:
+      - db-storage:/var/lib/postgresql
   web:
     build: ../api
     ports:
@@ -21,4 +23,6 @@ services:
       - ../frontend:/code
     ports:
       - "5173:5173"
-      - "8000:8000"
+
+volumes:
+  db-storage:
