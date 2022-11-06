@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['click'])
 
 function onClick() {
-  props.clickable ?? emit('click')
+  props.clickable && emit('click')
 }
 
 const cssClass = computed(() => ({
